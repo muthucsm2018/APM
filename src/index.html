@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>APM</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/forms" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/basil.js/0.4.10/basil.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/forms/content/js/jquery-idle-hands.js"></script>
+  <script type="text/javascript" src="/forms/content/js/wogaa.js"></script> -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">     -->
+  <script>
+          $(function () {
+              $.idleHands({
+                  applicationId: 'my_application',
+                  heartRate: 120,
+                  inactivityDialogDuration: 45,
+                  inactivityLogoutUrl: 'https://www.google.com',
+                  maxInactivitySeconds: 120
+              });
+          });
+  </script>
+</head>
+<body>
+  <pm-root></pm-root> 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</body>
+</html>

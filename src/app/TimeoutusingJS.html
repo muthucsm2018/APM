@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>APM</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+    <script>
+        /*<![CDATA[*/
+$(function () {
+ $("#timeout-example").click(function(e) {
+   e.preventDefault();
+   $.timeoutDialog({timeout: 1, countdown: 60, logout_redirect_url: 'http://www.google.com', restart_on_yes: false});
+ });
+});
+/*]]>*/
+
+        // Set timeout variables.
+        var timoutWarning = 10000; // Display warning in 14 Mins.
+        var timoutNow = 10000; // Warning has been shown, give the user 1 minute to interact
+        var logoutUrl = 'http://www.google.com'; // URL to logout page.
+
+        var warningTimer;
+        var timeoutTimer;
+
+        // Start warning timer.
+        function StartWarningTimer() {
+            warningTimer = setTimeout("IdleWarning()", timoutWarning);
+            console.log('Start Timer');
+        }
+
+        // Reset timers.
+        function ResetTimeOutTimer() {
+            clearTimeout(timeoutTimer);
+            StartWarningTimer();
+            $("#timeout").dialog('close');
+            console.log('Reset Timer');
+        }
+
+        // Show idle timeout warning dialog.
+        function IdleWarning() {
+            clearTimeout(warningTimer);
+            timeoutTimer = setTimeout("IdleTimeout()", timoutNow);
+            $.timeoutDialog({timeout: 1, countdown: 60, logout_redirect_url: 'http://www.google.com', restart_on_yes: false});          
+            
+        }
+
+        // Logout the user.
+        function IdleTimeout() {
+            console.log('Timed out');
+            window.location = logoutUrl;
+        }
+     
+        $(function () {
+            StartWarningTimer();
+        });
+
+    </script>
+</head>
+<body>
+  <pm-root></pm-root>
+  <!-- <div>
+    <a href="#" id="timeout-example">Click Here to See Demo</a>
+  </div>
+  <div id="timeout" style="display: none;" title="Timeout Warning!" >
+    <p>You're being timed out due to inactivity.</br>
+    Please choose to stay signed in or logoff.</br>
+    Otherwise, you will logged off automatically.</p>
+    <button class="btn btn-info" onclick="ResetTimeOutTimer()"> Stay Logged In </button>
+    <button class="btn btn-info" onclick="IdleTimeout()"> Logout </button> 
+</div> -->
+</body>
+</html>
